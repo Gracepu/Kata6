@@ -10,13 +10,15 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 
-public class HistogramDisplay extends ApplicationFrame {
+public class HistogramDisplay <T> extends ApplicationFrame {
 
-    private final Histogram<String> histogram;
+    private final Histogram<T> histogram;
+    private final String nameEjeX;
     
-    public HistogramDisplay(Histogram<String> histogram) {
+    public HistogramDisplay(Histogram<T> histogram, String nameEjeX) {
         super("HISTOGRAMA");
         this.histogram = histogram;
+        this.nameEjeX = nameEjeX;
         setContentPane(createPanel());
         pack();
     }
@@ -39,8 +41,8 @@ public class HistogramDisplay extends ApplicationFrame {
     
     private DefaultCategoryDataset createDataSet() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (String key : histogram.keySet()) {
-            dataset.addValue(histogram.get(key), "", key);
+        for (T key : histogram.keySet()) {
+            dataset.addValue(histogram.getKey(key), "", (Comparable) key);
         }
         return dataset;
     }
