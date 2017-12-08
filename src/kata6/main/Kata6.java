@@ -21,11 +21,13 @@ public class Kata6 {
     
     private List<Mail> listMail;
     private List<Person> people;
+    
     private HistogramBuilder<Mail> builder;
+    private HistogramBuilder<Person> builderPerson;
     private Histogram<Character> letters;
     private Histogram<String> domains;
-    private HistogramBuilder<Person> builderPerson;
-    Histogram<Character> gender;
+    private Histogram<Character> gender;
+    private Histogram<Float> weight;
     
     
     private void execute() throws IOException, ClassNotFoundException, SQLException {
@@ -61,6 +63,12 @@ public class Kata6 {
                                     return item.getGender();
                                 }
                             });
+        weight = builderPerson.build(new Attribute<Person, Float>() {
+                                @Override
+                                public Float get(Person item) {
+                                    return item.getWeight();
+                                }
+                            });
     }
     
     private void output() {
@@ -70,5 +78,7 @@ public class Kata6 {
         histoDisplay2.execute();
         HistogramDisplay histoDisplay3 = new HistogramDisplay(gender,"Gender");
         histoDisplay3.execute();
+        HistogramDisplay histoDisplay4 = new HistogramDisplay(weight,"Weight");
+        histoDisplay4.execute();
     }
 }

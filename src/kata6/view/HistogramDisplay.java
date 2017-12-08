@@ -2,7 +2,6 @@ package kata6.view;
 
 import kata6.model.Histogram;
 import java.awt.Dimension;
-import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -31,7 +30,7 @@ public class HistogramDisplay <T> extends ApplicationFrame {
     
     private JFreeChart createChart(DefaultCategoryDataset dataset) {
         JFreeChart chart = ChartFactory.createBarChart("Histograma JFreeChart", 
-                                    "Dominios email", 
+                                    nameEjeX, 
                                     "Nº de emails", dataset, 
                                     PlotOrientation.VERTICAL, false, 
                                     rootPaneCheckingEnabled, 
